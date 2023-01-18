@@ -1,9 +1,13 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 type LineMsgController struct{}
 
-func NewLineMsgController(g gin.Context) {
+func (c *LineMsgController) Query(g *gin.Context) {
 
+	g.JSON(http.StatusOK, "Test")
 }

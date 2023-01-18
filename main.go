@@ -16,8 +16,8 @@ func main() {
 	g.Use(cors.Default())
 	// 創建一個新的 GameController。
 	gc := &controllers.LineMsgController{}
-	game := g.Group("game")
-	game.GET("query", gc.NewGame)
-	g
+	game := g.Group("lineMsg")
+	game.GET("query", gc.Query)
 	fmt.Println("Hello, World!")
+	g.Run()
 }
