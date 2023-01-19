@@ -5,6 +5,8 @@ import (
 	"github.com/line/line-bot-sdk-go/linebot"
 	"github.com/spf13/viper"
 	"log"
+	"m800/db"
+	"m800/interal/dto"
 	"net/http"
 )
 
@@ -63,4 +65,14 @@ func lineWebhookHandler(c *gin.Context) {
 	c.JSON(200, gin.H{"message": "OK"})
 }
 
-func saveMessageToMongoDB(event *linebot.Event) {}
+func saveMessageToMongoDB(event *linebot.Event) {
+	msg, _ := event.Message.(*linebot.TextMessage)
+	// Create a message
+	message := dto.Message{
+		UserID: event.Source.UserID,
+		Text:   msg.Text,
+	}
+
+	mongoImpl := db.NewMongoImpl()
+	mongoImpl.Save(message)
+}

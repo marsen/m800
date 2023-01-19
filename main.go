@@ -6,7 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 	"m800/controllers"
-	"m800/db"
 )
 
 func main() {
@@ -15,7 +14,7 @@ func main() {
 	viper.SetConfigType("yml")
 	viper.ReadInConfig()
 	viper.SetDefault("mongo.url", "mongodb://localhost:27017")
-	db.NewMongoImpl(viper.GetString("mongo.url"))
+	//db.NewMongoImpl(viper.GetString("mongo.url"))
 	g := gin.Default()
 	g.Use(cors.Default())
 	// 創建一個新的 GameController。
