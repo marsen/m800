@@ -34,13 +34,8 @@ func (c *LineMsgController) Query(g *gin.Context) {
 }
 
 func (c *LineMsgController) Save(g *gin.Context) {
-	// 設定 line bot client
-	bot, err := linebot.New(
-		viper.GetString("line.secret"),
-		viper.GetString("line.token"),
-	)
 	// 取得請求中的資料
-	events, err := bot.ParseRequest(g.Request)
+	events, err := c.bot.ParseRequest(g.Request)
 	if err != nil {
 		if err == linebot.ErrInvalidSignature {
 			g.JSON(400, gin.H{"message": "Invalid signature"})
