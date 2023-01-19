@@ -2,3 +2,5 @@ mongo:
   url: "mongodb://localhost:27017"
 line:
   account: "@704utjiv"
+  secret: "424aad614b614eb02150b7f174c4978b"
+  token: "HiHF6joweW7wLmspTOQxT8SKHdcrISF0AiF+kHXPdNI6ir6U77qyPtRagIHz1MBgJdB6TKaMAxUHaHMJorldfSoEp6JCN3nRVowzj6HCF8XQaQvF+EPyRN/sgAn59d8QKj3SZuAWbwny3oD2/mvmXwdB04t89/1O/w1cDnyilFU="

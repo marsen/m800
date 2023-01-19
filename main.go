@@ -17,6 +17,9 @@ func main() {
 	// 創建一個新的 GameController。
 	gc := &controllers.LineMsgController{}
 	game := g.Group("lineMsg")
+	game.POST("send", gc.Send)
+	game.POST("save", gc.Save)
+
 	game.GET("query", gc.Query)
 	fmt.Println("Hello, World!")
 	g.Run()
