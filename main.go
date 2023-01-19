@@ -22,10 +22,8 @@ func main() {
 	gc := controllers.NewLineMsgController()
 	game := g.Group("lineMsg")
 	game.POST("send", gc.Send)
-
 	game.POST("save", gc.Save)
-
-	game.GET("query", gc.Query)
+	game.GET("query/:userId", gc.Query)
 	fmt.Println("Hello, World!")
 	g.Run()
 }

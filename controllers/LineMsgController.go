@@ -29,8 +29,10 @@ func NewLineMsgController() LineMsgController {
 }
 
 func (c *LineMsgController) Query(g *gin.Context) {
-
-	g.JSON(http.StatusOK, "Test")
+	userID := g.Param("userId")
+	mongoImpl := db.NewMongoImpl()
+	messages := mongoImpl.Query(userID)
+	g.JSON(200, gin.H{"messages": messages})
 }
 
 func (c *LineMsgController) Save(g *gin.Context) {
