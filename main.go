@@ -10,6 +10,10 @@ import (
 )
 
 func main() {
+	viper.AddConfigPath(".")
+	viper.SetConfigName("config")
+	viper.SetConfigType("yml")
+	viper.ReadInConfig()
 	viper.SetDefault("mongo.url", "mongodb://localhost:27017")
 	db.NewMongoImpl(viper.GetString("mongo.url"))
 	g := gin.Default()
