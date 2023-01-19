@@ -49,6 +49,26 @@ func (c *LineMsgController) Save(g *gin.Context) {
 	g.JSON(200, gin.H{"message": "OK"})
 }
 
+func (c *LineMsgController) Send(g *gin.Context) {
+	// 從請求中取得 userID 和 message
+	var req struct {
+		UserID  string `json:"userID"`
+		Message string `json:"message"`
+	}
+	if err := g.BindJSON(&req); err != nil {
+		g.AbortWithStatus(http.StatusBadRequest)
+		return
+	}
+	// 回傳訊息
+	// 建立文字訊息
+	msg := linebot.NewTextMessage(req.Message)
+	// 回傳訊息
+	_, err := c.bot.PushMessage(req.UserID, msg).Do()
+	if err != nil {
+		log.Print(err)
+	}
+	g.JSON(http.StatusOK, gin.H{})
+}
 
 func saveMessage(event *linebot.Event) {
 	msg, _ := event.Message.(*linebot.TextMessage)
