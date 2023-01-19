@@ -18,9 +18,11 @@ func main() {
 	g := gin.Default()
 	g.Use(cors.Default())
 	// 創建一個新的 GameController。
-	gc := &controllers.LineMsgController{}
+	//gc := &controllers.LineMsgController{}
+	gc := controllers.NewLineMsgController()
 	game := g.Group("lineMsg")
 	game.POST("send", gc.Send)
+
 	game.POST("save", gc.Save)
 
 	game.GET("query", gc.Query)
