@@ -28,6 +28,12 @@ func NewLineMsgController() LineMsgController {
 	}
 }
 
+func (c *LineMsgController) Query(g *gin.Context) {
+	userID := g.Param("userId")
+	mongoImpl := db.NewMongoImpl()
+	messages := mongoImpl.Query(userID)
+	g.JSON(200, gin.H{"messages": messages})
+}
 
 func (c *LineMsgController) Save(g *gin.Context) {
 	// 取得請求中的資料
